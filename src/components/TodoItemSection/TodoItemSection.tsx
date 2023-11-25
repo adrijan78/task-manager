@@ -15,7 +15,7 @@ const TodoItemSection = ({boxLabel,itemStatus}:Props) => {
     <Box className="TodoItemStyle">
       <Typography variant='h5'>{boxLabel}</Typography>
         {todos.map(todo=>{
-          return <TodoItem key={todo.id} itemStatus={todo.status} title={todo.title}/>
+          return <TodoItem key={todo.id} id={todo.id} itemStatus={todo.status} title={todo.title}/>
         })}
     </Box>
   )

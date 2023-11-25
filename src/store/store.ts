@@ -1,31 +1,24 @@
 import { create } from "zustand";
 import { Todo } from "../models/Todo";
 
-type TodosStore = {
+interface TodosStore {
   todos: Todo[];
-};
+  addTask: (todo: Todo) => void;
+  deleteTodos: (id: number) => void;
+}
 
 const store = (set: any) => ({
-  todos: [
-    {
-      id: 1,
-      title: "Planned task",
-      description: "Lorem ipsun sit dollor amet",
-      status: "PLANNED",
-    },
-    {
-      id: 2,
-      title: "Ongoing task",
-      description: "Lorem ipsun sit dollor amet",
-      status: "ONGOING",
-    },
-    {
-      id: 3,
-      title: "Done task",
-      description: "Lorem ipsun sit dollor amet",
-      status: "DONE",
-    },
-  ],
+  todos: [],
+  addTask: (todoItem: Todo) => {
+    const todoItemIndex = Math.floor(Math.random() * 32000);
+    todoItem.id = todoItemIndex;
+    set((state: any) => ({ todos: [...state.todos, todoItem] }));
+  },
+  deleteTodos: (id: number) => {
+    set((state: any) => ({
+      todos: state.todos.filter((todo: Todo) => todo.id !== id),
+    }));
+  },
 });
 
 export const useTodosStore = create<TodosStore>()(store);

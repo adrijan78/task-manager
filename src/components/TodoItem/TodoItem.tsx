@@ -1,7 +1,12 @@
-import { Box, Typography,Divider, Chip } from '@mui/material'
+import { Box, Typography,Divider, Chip, Button } from '@mui/material'
+import { useTodosStore } from '../../store/store';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export const TodoItem = (props:any) => {
-    let chipBgColor="danger";
+
+  const {deleteTodos}=useTodosStore()
+  
+  let chipBgColor="danger";
   switch(props.itemStatus){
     case 'PLANNED':  chipBgColor='#1976d2'; break;
     case 'ONGOING':  chipBgColor='#ed6c02'; break;
@@ -9,10 +14,16 @@ export const TodoItem = (props:any) => {
     default:break;
   }
   return (
-    <Box className="boxyStyle" sx={{color:'white',padding:"1rem",backgroundColor:'#7d8587',display:'block',marginY:'1.5rem'}}>
-            <Typography variant={'h6'}>{props.title}</Typography>
-            <Divider sx={{color:'white', backgroundColor:'white'}}/>
-            <Chip label={props.itemStatus} sx={{maxWidth:'100px!important',minWidth:'85px!important',color:'white',marginTop:'1rem',marginLeft:'78%',background:`${chipBgColor}`}}/>
-        </Box>
+    
+    <div className="boxyStyle" draggable style={{color:'white',backgroundColor:'#7d8587',display:'block',marginTop:'1.5rem'}} >
+      <Button onClick={()=>{deleteTodos(props.id)}} className='todoDeleteBtn'><DeleteOutlineIcon sx={{color:'black'}} /></Button>
+        <div style={{padding:"1rem"}}>
+          
+                <Typography variant={'h6'}>{props.title}</Typography>
+                <Divider sx={{color:'white', backgroundColor:'white'}}/>
+                <Chip label={props.itemStatus} sx={{maxWidth:'100px!important',minWidth:'85px!important',color:'white',marginTop:'1rem',marginLeft:'78%',background:`${chipBgColor}`}}/>
+
+        </div>
+      </div>
   )
 }

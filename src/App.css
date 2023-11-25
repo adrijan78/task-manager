@@ -54,6 +54,18 @@
   
 }
 
+.todoDeleteBtn{
+  background-color: #7d8587;
+  border-radius: 1rem;
+  margin-top: 1.5%!important;
+  margin-left: 83%!important;
+}
+.todoDeleteBtn:hover{
+  background-color: red!important;
+  
+}
+
+
 .boxyStyle{
   border-radius: 1rem;
 }
