@@ -43,7 +43,6 @@ export default function Modal() {
   };
 
   const onSubmitHandler = (data:any)=>{
-    debugger;
     if(isValid){
       addTask(data);
       handleClose();
@@ -85,7 +84,7 @@ export default function Modal() {
             fullWidth
             variant="outlined"
             rows={4}
-            error={errors.description?.message != undefined}
+            error={errors.description?.message !== undefined}
             helperText={errors.description?.message}
           />
 

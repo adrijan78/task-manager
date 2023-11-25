@@ -1,10 +1,11 @@
-import { Box, Typography,Divider, Chip, Button } from '@mui/material'
+import {  Typography,Divider, Chip, Button } from '@mui/material'
 import { useTodosStore } from '../../store/store';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export const TodoItem = (props:any) => {
 
-  const {deleteTodos}=useTodosStore()
+  const {deleteTodos,setDraggedTodo}=useTodosStore()
+
   
   let chipBgColor="danger";
   switch(props.itemStatus){
@@ -15,7 +16,7 @@ export const TodoItem = (props:any) => {
   }
   return (
     
-    <div className="boxyStyle" draggable style={{color:'white',backgroundColor:'#7d8587',display:'block',marginTop:'1.5rem'}} >
+    <div className="boxyStyle" draggable onDragStart={()=>{setDraggedTodo(props.id)}} style={{color:'white',backgroundColor:'#7d8587',display:'block',marginTop:'1.5rem'}} >
       <Button onClick={()=>{deleteTodos(props.id)}} className='todoDeleteBtn'><DeleteOutlineIcon sx={{color:'black'}} /></Button>
         <div style={{padding:"1rem"}}>
           
