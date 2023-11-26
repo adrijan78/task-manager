@@ -65,6 +65,14 @@
   
 }
 
+.drop{
+  border: dashed grey;
+}
+
+.notdroppable{
+  border:none
+}
+
 
 .boxyStyle{
   border-radius: 1rem;
