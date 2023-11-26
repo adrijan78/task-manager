@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Todo } from "../models/Todo";
-import { persist } from "zustand/middleware";
+import { persist, devtools } from "zustand/middleware";
 
 interface TodosStore {
   todos: Todo[];
@@ -34,5 +34,5 @@ const store = (set: any) => ({
 });
 
 export const useTodosStore = create<TodosStore>()(
-  persist(store, { name: "store" })
+  persist(devtools(store), { name: "store" })
 );
